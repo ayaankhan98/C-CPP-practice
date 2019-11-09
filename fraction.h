@@ -56,6 +56,10 @@ public:
 	fraction operator - (fraction);
 	fraction operator * (fraction);
 	fraction operator / (fraction);
+	fraction& operator += (fraction);
+	fraction& operator -= (fraction);
+	fraction& operator *= (fraction);
+	fraction& operator /= (fraction);
 };
 
 fraction fraction::operator + (fraction f1)		//DEFINING ADDTION
@@ -89,6 +93,36 @@ fraction fraction::operator / (fraction f1)		//DEFINING DIVISION
 	temp.denom = denom * f1.nume;
 	return temp;
 }
+
+fraction& fraction::operator += (fraction f1)
+{
+	nume = (nume * f1.denom) + (f1.nume * denom);
+	denom = denom * f1.denom;
+	return *this;
+}
+
+fraction& fraction::operator -= (fraction f1)
+{
+	nume = (nume * f1.denom) - (f1.nume * denom);
+	denom = denom * f1.denom;
+	return *this;
+}
+
+fraction& fraction::operator *= (fraction f1)
+{
+	nume = nume * f1.nume;
+	denom = denom * f1.denom;
+	return *this;
+}
+
+fraction& fraction::operator /= (fraction f1)
+{
+	nume = nume * f1.denom;
+	denom = denom * f1.nume;
+	return *this;
+}
+
+
 void fraction::simplify()		// DEFINING SIMPLIFICATION OF FRACTION using Eculid's Algorithm
 {
 	fraction temp;
